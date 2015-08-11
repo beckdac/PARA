@@ -4,8 +4,8 @@ m4OD = 4;
 bearingStepHeightInner = 2;
 
 module bearingCap() {
-	rotate([180, 0, 0])
-		translate([0, 0, -(bearingStepHeight * 2)])
+	translate([0, 0, -(bearingStepHeight + bearingStepHeightInner)])
+		rotate([180, 0, 0])
 			bearingInnerStep(bearing6807_2RS_d - iFitAdjust, bearingStepHeightInner, bearingStepWidth);
 }
 
@@ -26,9 +26,8 @@ module bearingInnerStep(bearingID, stepHeight, stepWidth) {
 		translate([0, 0, -epsilon / 2.])
         	cylinder(h = (stepHeight * 2) + epsilon, d = shaftOD + epsilon);
 		radial_array(n = 3) {
-			translate([bearing6807_2RS_d / 3, 0, 0])
+			translate([bearing6807_2RS_d / 3, 0, -epsilon / 2.])
 			cylinder(h = (stepHeight * 2) + epsilon, d = m4OD + epsilon / 2);
 		}
     }
 }
-

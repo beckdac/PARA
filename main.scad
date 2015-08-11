@@ -10,12 +10,15 @@ include <bearing6807_2RS.scad>
 include <motorPlate.scad>
 include <bearingRetainer.scad>
 include <bearingCap.scad>
+include <upperArm.scad>
 
 *translate([0, 0, motorPlateHeight])
     motor();
 *motorPlate();
 *translate([0, 0, -bearingStepHeight - (bearingStepHeight * 2.0)])
     bearing6807_2RS();
-*bearingRetainer();
+bearingRetainer();
 
-bearingCap();
+#bearingCap();
+
+upperArm();
