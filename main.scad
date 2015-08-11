@@ -17,8 +17,8 @@ include <upperArm.scad>
 *motorPlate();
 *translate([0, 0, -bearingStepHeight - (bearingStepHeight * 2.0)])
     bearing6807_2RS();
-bearingRetainer();
+*bearingRetainer();
 
-#bearingCap();
+*bearingCap();
 
 upperArm();
