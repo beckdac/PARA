@@ -2,11 +2,13 @@
 iFitAdjust = .4;
 iFitAdjust_d = .25;
 epsilon = 1;
+M4ScrewDiameter = 4; // no iFit on this for now
 
 $fn = 64;
 
 use <MCAD/stepper.scad>
 include <bearing6807_2RS.scad>
+include <bearing608ZZ.scad>
 include <motorPlate.scad>
 include <bearingRetainer.scad>
 include <bearingCap.scad>
@@ -38,6 +40,8 @@ difference() {
     bearing6807_2RS();
 bearingRetainer();
 
-*bearingCap();
+rotate([0, 0, 90])
+    bearingCap();
 
-*upperArm();
+rotate([0, 0, 90])
+    upperArm();
