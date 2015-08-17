@@ -49,3 +49,7 @@ plateJoinWidth = motorSeparation - motorPlateWidth;
 
 rotate([0, 0, 90])
     upperArm();
+
+translate([motorSeparation, 0, 0])
+    rotate([0, 0, 90])
+        upperArm();

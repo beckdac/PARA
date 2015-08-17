@@ -1,6 +1,7 @@
 upperArmHeightExtension = 10;
 upperArmLength = 50;
 mainRingDiameter = bearing6807_2RS_d - iFitAdjust_d + bearingStepWidth;
+M8NutDiameterExtension = 8;
 
 module upperArm() {
 	difference() {
@@ -12,12 +13,15 @@ module upperArm() {
 			translate([0, 0,  -(bearingStepHeight + bearingStepHeightInner + bearing6807_2RS_B + motorPlateHeight / 2 + upperArmHeightExtension + upperArmHeightExtension / 2)])
 				difference () {
 					hull() {
-						cylinder(h = upperArmHeightExtension / 2, d = mainRingDiameter);
+						cylinder(h = M8Nut_H, d = mainRingDiameter);
 						translate([upperArmLength, 0, 0])
-							cylinder(h = upperArmHeightExtension / 2, d = bearing608ZZ_D + 4);
+							cylinder(h = M8Nut_H, d = M8Nut_F + M8NutDiameterExtension);
 					}
-					translate([upperArmLength, 0, -epsilon / 2])
-						cylinder(h = (upperArmHeightExtension / 2) + epsilon, d = bearing608ZZ_D);
+					// there are two here so that the rapid drawing looks correct, not for a functional reason
+					translate([upperArmLength, 0, -epsilon])
+						M8Nut(includeShaft = 0);
+					translate([upperArmLength, 0, epsilon])
+						M8Nut(includeShaft = 0);
 				}
 		}
 		radial_array(n = 3) {
@@ -34,7 +38,7 @@ module upperArm() {
 		translate([0, 0, -(bearingStepHeight + bearingStepHeightInner + bearing6807_2RS_B + motorPlateHeight / 2 + upperArmHeightExtension)])
 			translate([0, 0, -epsilon * 6.]) {
 				difference() {
-					cylinder(h = upperArmHeightExtension + 20 *epsilon, d = shaftOD);
+					cylinder(h = upperArmHeightExtension + 20 *epsilon, d = shaftOD + iFitAdjust_d);
 					translate([-12.5, -5, 0])
 						cube([10, 10, upperArmHeightExtension + 20]);
 				}
