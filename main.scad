@@ -12,14 +12,18 @@ include <bearing608ZZ.scad>
 include <motorPlate.scad>
 include <bearingRetainer.scad>
 include <bearingCap.scad>
+include <M8Nut.scad>
 include <upperArm.scad>
 
 motorSeparation = 100;
 plateJoinWidth = motorSeparation - motorPlateWidth;
 
+*translate([0, 0, 50])
+    M8Nut(includeShaft = 1);
+
 *translate([0, 0, motorPlateHeight])
     motor();
-difference() {
+*difference() {
     union() {
         translate([motorPlateWidth / 2 + plateJoinWidth / 2, 0, motorPlateHeight / 2])
             cube(size=[plateJoinWidth, motorPlateLength, motorPlateHeight], center=true);
@@ -38,9 +42,9 @@ difference() {
 }
 *translate([0, 0, -bearingStepHeight - (bearingStepHeight * 2.0)])
     bearing6807_2RS();
-bearingRetainer();
+*bearingRetainer();
 
-rotate([0, 0, 90])
+*rotate([0, 0, 90])
     bearingCap();
 
 rotate([0, 0, 90])
