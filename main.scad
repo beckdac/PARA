@@ -12,13 +12,32 @@ include <bearingRetainer.scad>
 include <bearingCap.scad>
 include <upperArm.scad>
 
+motorSeparation = 100;
+plateJoinWidth = motorSeparation - motorPlateWidth;
+
 *translate([0, 0, motorPlateHeight])
     motor();
-*motorPlate();
+difference() {
+    union() {
+        translate([motorPlateWidth / 2 + plateJoinWidth / 2, 0, motorPlateHeight / 2])
+            cube(size=[plateJoinWidth, motorPlateLength, motorPlateHeight], center=true);
+        motorPlate();
+        translate([motorSeparation, 0, 0])
+            motorPlate();
+    }
+    translate([-(motorPlateWidth / 2 - 5), -10, motorPlateHeight / 2])
+        cylinder(h = 5 + epsilon, d = nema23MountHoleDiameter, center = true);
+    translate([-(motorPlateWidth / 2 - 5), +10, motorPlateHeight / 2])
+        cylinder(h = 5 + epsilon, d = nema23MountHoleDiameter, center = true);
+    translate([(motorPlateWidth / 2 - 5) + plateJoinWidth + motorPlateWidth, -10, motorPlateHeight / 2])
+        cylinder(h = 5 + epsilon, d = nema23MountHoleDiameter, center = true);
+    translate([(motorPlateWidth / 2 - 5) + plateJoinWidth + motorPlateWidth, +10, motorPlateHeight / 2])
+        cylinder(h = 5 + epsilon, d = nema23MountHoleDiameter, center = true);
+}
 *translate([0, 0, -bearingStepHeight - (bearingStepHeight * 2.0)])
     bearing6807_2RS();
-*bearingRetainer();
+bearingRetainer();
 
 *bearingCap();
 
-upperArm();
+*upperArm();

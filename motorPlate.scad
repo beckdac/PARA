@@ -1,6 +1,6 @@
 motorPlateHeight = 5;
-motorPlateWidth = 60;
-motorPlateLength = 100;
+motorPlateWidth = 80;
+motorPlateLength = 60;
 bearingStepWidth = 2;
 bearingStepHeight = 5;
 nema23MountHoleDistance = 47.14;
