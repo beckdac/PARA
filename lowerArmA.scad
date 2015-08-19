@@ -1,4 +1,4 @@
-lowerArmLength = 50;
+lowerArmLength = 150;
 bearing608ZZDiameterExtension = 8;
 
 module lowerArmA() {
@@ -9,8 +9,8 @@ module lowerArmA() {
 				cylinder(h = bearing608ZZ_B, d = bearing6807_2RS_D + bearing608ZZDiameterExtension);
 		}
 		translate([0, 0, -epsilon / 2])
-			cylinder(h = bearing608ZZ_B + epsilon, d = bearing608ZZ_D + iFitAdjust_d);
+			cylinder(h = bearing608ZZ_B + epsilon, d = bearing608ZZ_D + iFitAdjust);
 		translate([0, lowerArmLength, -epsilon / 2])
-			cylinder(h = bearing608ZZ_B + epsilon, d = bearing6807_2RS_D + iFitAdjust_d);
+			cylinder(h = bearing608ZZ_B + epsilon, d = bearing6807_2RS_D + iFitAdjust);
 	}
 }

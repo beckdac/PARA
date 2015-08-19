@@ -1,5 +1,5 @@
 upperArmHeightExtension = 10;
-upperArmLength = 50;
+upperArmLength = 150;
 mainRingDiameter = bearing6807_2RS_d - iFitAdjust_d + bearingStepWidth;
 M8NutDiameterExtension = 8;
 
@@ -9,7 +9,7 @@ module upperArm() {
 			translate([0, 0, -(bearingStepHeight + bearingStepHeightInner + bearing6807_2RS_B + motorPlateHeight / 2)])
 				bearingInnerStep(bearing6807_2RS_d - iFitAdjust, bearingStepHeightInner, bearingStepWidth);
 			translate([0, 0, -(bearingStepHeight + bearingStepHeightInner + bearing6807_2RS_B + motorPlateHeight / 2 + upperArmHeightExtension)])
-				cylinder(h = upperArmHeightExtension, d = mainRingDiameter); //foo
+				cylinder(h = upperArmHeightExtension, d = mainRingDiameter);
 			translate([0, 0,  -(bearingStepHeight + bearingStepHeightInner + bearing6807_2RS_B + motorPlateHeight / 2 + upperArmHeightExtension + upperArmHeightExtension / 2)])
 				difference () {
 					hull() {
@@ -30,7 +30,7 @@ module upperArm() {
 					cylinder(h = upperArmHeightExtension + epsilon, d = M4ScrewDiameter);
 		}
 		// set screw
-		translate([0, 0, -(bearingStepHeight + bearingStepHeightInner + bearing6807_2RS_B + motorPlateHeight / 2 + upperArmHeightExtension  / 3)])
+		translate([0, 0, -(bearingStepHeight + bearingStepHeightInner + bearing6807_2RS_B + motorPlateHeight / 2 + upperArmHeightExtension  / 1)])
 
 			rotate([0, 90, 180])
 				cylinder(h = 30, d = 3); 
@@ -38,7 +38,7 @@ module upperArm() {
 		translate([0, 0, -(bearingStepHeight + bearingStepHeightInner + bearing6807_2RS_B + motorPlateHeight / 2 + upperArmHeightExtension)])
 			translate([0, 0, -epsilon * 6.]) {
 				difference() {
-					cylinder(h = upperArmHeightExtension + 20 *epsilon, d = shaftOD + iFitAdjust_d);
+					cylinder(h = upperArmHeightExtension + 20 *epsilon, d = shaftOD + epsilon);
 					translate([-12.5, -5, 0])
 						cube([10, 10, upperArmHeightExtension + 20]);
 				}
