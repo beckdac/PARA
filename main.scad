@@ -26,7 +26,7 @@ plateJoinWidth = motorSeparation - motorPlateWidth;
 
 *translate([0, 0, motorPlateHeight])
     motor();
-*difference() {
+difference() {
     union() {
         translate([motorPlateWidth / 2 + plateJoinWidth / 2, 0, motorPlateHeight / 2])
             cube(size=[plateJoinWidth, motorPlateLength, motorPlateHeight], center=true);
@@ -50,7 +50,7 @@ bearingRetainer();
 *rotate([0, 0, 90])
     bearingCap();
 
-*rotate([0, 0, 90])
+rotate([0, 0, 90])
     upperArm();
 
 *translate([0, upperArmLength, -(bearingStepHeight + bearingStepHeightInner + bearing6807_2RS_B + motorPlateHeight / 2 + upperArmHeightExtension + upperArmHeightExtension / 2  - M8Nut_H - M8WasherHeight)]) {
