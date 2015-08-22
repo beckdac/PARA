@@ -8,11 +8,15 @@ nema23MountHoleDiameter = 4.75;
 nema23RoundExtrusionDiameter = bearing6807_2RS_D - bearingStepWidth;
 epsilon = 1;
 
-module motorPlate() {
+module motorPlate(g1hpg2h) {
 	union() {
 		translate([0, 0, motorPlateHeight / 2.0]) {
 			difference() {
-				cube(size = [motorPlateWidth, motorPlateLength, motorPlateHeight], center = true);
+				union() {
+					cube(size = [motorPlateWidth, motorPlateLength, motorPlateHeight], center = true);
+					translate([0, g1hpg2h, 0])
+						cube(size = [motorPlateLength, motorPlateLength, motorPlateHeight], center = true);
+				}
 				cylinder(h = 5 + epsilon, d = nema23RoundExtrusionDiameter, center = true);
 				translate([nema23MountHoleDistance / 2.0, nema23MountHoleDistance / 2.0, 0]) {
 					cylinder(h = 5 + epsilon, d = nema23MountHoleDiameter, center = true);
@@ -25,6 +29,24 @@ module motorPlate() {
 				}
 				translate([-nema23MountHoleDistance / 2.0, -nema23MountHoleDistance / 2.0, 0]) {
 					cylinder(h = 5 + epsilon, d = nema23MountHoleDiameter, center = true);
+				}
+				for (i = [-3 : 3]) {
+					e = epsilon / 2 * i;
+				translate([0, g1hpg2h - e, 0]) {
+					cylinder(h = 5 + epsilon, d = nema23RoundExtrusionDiameter, center = true);
+					translate([nema23MountHoleDistance / 2.0, nema23MountHoleDistance / 2.0, 0]) {
+						cylinder(h = 5 + epsilon, d = nema23MountHoleDiameter, center = true);
+					}
+					translate([nema23MountHoleDistance / 2.0, -nema23MountHoleDistance / 2.0, 0]) {
+						cylinder(h = 5 + epsilon, d = nema23MountHoleDiameter, center = true);
+					}
+					translate([-nema23MountHoleDistance / 2.0, nema23MountHoleDistance / 2.0, 0]) {
+						cylinder(h = 5 + epsilon, d = nema23MountHoleDiameter, center = true);
+					}
+					translate([-nema23MountHoleDistance / 2.0, -nema23MountHoleDistance / 2.0, 0]) {
+						cylinder(h = 5 + epsilon, d = nema23MountHoleDiameter, center = true);
+					}
+				}
 				}
 			}
 		}
@@ -42,3 +64,5 @@ module bearingOuterStep(bearingOD, stepHeight, stepWidth) {
 		}
     }
 }
+
+
